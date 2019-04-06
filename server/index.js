@@ -1,10 +1,7 @@
-require('dotenv').config({ silent: true });
-
 const express = require('express');
 const compression = require('compression');
 const path = require('path');
 const bodyParser = require('body-parser');
-const options = require('./options');
 
 const port = process.env.PORT || 8080;
 const app = express();
