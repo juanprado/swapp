@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
+import firebase from '../../config/firebase';
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: '',
       name: '',
       description: '',
       image: ''
@@ -20,10 +21,21 @@ class Dashboard extends Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
+    const db = firebase.firestore();
+    const { name, description, image } = this.state;
+    const { userId } = this.props;
+
     evt.preventDefault();
-    // send to database
-    window.alert(`You added ${this.state.name}!`);
+
+    try {
+      await db.collection('users').doc(userId).update({
+        products: firebase.firestore.FieldValue.arrayUnion({ name, description, image })
+      });
+      window.alert(`You added ${name}}!`);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -38,7 +50,7 @@ class Dashboard extends Component {
           <textarea name="description" value={this.state.description} onChange={this.handleChange} />
         </label>
         <label>Product image:
-          <input type="file" name="image" value={this.state.image} onChange={this.handleChange} />
+          <input type="text" name="image" value={this.state.image} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Add Product" />
       </form>

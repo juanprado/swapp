@@ -4,42 +4,35 @@ import firebase from '../../config/firebase';
 import AddProductForm from '../components/addProductForm';
 import Product from '../components/product';
 
-// const user = {
-//   name: 'Cher',
-//   email: 'cher@hotmail.com'
-// };
-
-const products = [
-  { id: 'shirt',
-    name: 'shirt',
-    description: 'a shirt',
-    image: ''
-  },
-  { id: 'pants',
-    name: 'pants',
-    description: 'a pants',
-    image: ''
-  },
-  { id: 'shoes',
-    name: 'shoes',
-    description: 'some shoes',
-    image: ''
-  }
-];
+// const products = [
+//   { id: 'shirt',
+//     name: 'shirt',
+//     description: 'a shirt',
+//     image: ''
+//   },
+//   { id: 'pants',
+//     name: 'pants',
+//     description: 'a pants',
+//     image: ''
+//   },
+//   { id: 'shoes',
+//     name: 'shoes',
+//     description: 'some shoes',
+//     image: ''
+//   }
+// ];
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: null,
+      user: null
     };
   }
 
   componentDidMount() {
-    // load products
-    const userId = this.props.match.params.userId;
-    
+    const { userId } = this.props.match.params;
 
     if (userId) {
       this.getUserData(userId);
@@ -61,6 +54,7 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.state;
+    const { userId } = this.props.match.params;
 
     if (!user) { return null; }
 
@@ -71,11 +65,11 @@ class Dashboard extends Component {
           <li>{user.name.first} {user.name.last}</li>
           <li>{user.email}</li>
         </ul>
-        <AddProductForm />
+        <AddProductForm userId={userId} />
         <h2>My Products To Share</h2>
         <ul className="o-product-list">
-          {products.map(product => (
-            <li key={product.id}>
+          {user.products && user.products.map((product, id) => (
+            <li key={`fashion-${id}`}>
               <Product {...product} />
             </li>))
           }
