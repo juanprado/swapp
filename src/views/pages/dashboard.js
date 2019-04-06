@@ -4,23 +4,7 @@ import firebase from '../../config/firebase';
 import AddProductForm from '../components/addProductForm';
 import Product from '../components/product';
 
-// const products = [
-//   { id: 'shirt',
-//     name: 'shirt',
-//     description: 'a shirt',
-//     image: ''
-//   },
-//   { id: 'pants',
-//     name: 'pants',
-//     description: 'a pants',
-//     image: ''
-//   },
-//   { id: 'shoes',
-//     name: 'shoes',
-//     description: 'some shoes',
-//     image: ''
-//   }
-// ];
+const db = firebase.firestore();
 
 class Dashboard extends Component {
   constructor(props) {
@@ -36,12 +20,18 @@ class Dashboard extends Component {
 
     if (userId) {
       this.getUserData(userId);
+      this.onDbUpdate(userId);
     }
   }
 
-  async getUserData(userId) {
-    const db = firebase.firestore();
+  onDbUpdate(userId) {
+    db.collection('users').doc(userId).onSnapshot((doc) => {
+      const user = doc.data();
+      this.setState({ user });
+    });
+  }
 
+  async getUserData(userId) {
     try {
       const response = await db.collection('users').doc(userId).get();
       const user = await response.data();
