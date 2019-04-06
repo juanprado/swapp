@@ -20,7 +20,7 @@ class Routes extends Component {
       <React.Fragment>
         <Switch location={location}>
           <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/:userId" component={Dashboard} />
           <Route exact path="/feed" component={Feed} />
           <Route exact path="/create-user" component={UserForm} />
         </Switch>
