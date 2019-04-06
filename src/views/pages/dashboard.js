@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
+import AddProductForm from '../components/addProductForm';
 import Product from '../components/product';
+
+const user = {
+  name: 'Cher',
+  email: 'cher@hotmail.com'
+};
 
 const products = [
   { id: 'shirt',
@@ -34,7 +40,14 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <ul>
+        <h2>My User Info</h2>
+        <ul className="o-user-information">
+          <li>{user.name}</li>
+          <li>{user.email}</li>
+        </ul>
+        <AddProductForm />
+        <h2>My Products To Share</h2>
+        <ul className="o-product-list">
           {products.map(product => (
             <li key={product.id}>
               <Product {...product} />
