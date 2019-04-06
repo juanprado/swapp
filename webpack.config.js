@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DotenvPlugin = require('dotenv-webpack');
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
@@ -15,6 +16,10 @@ const cssPlugin = new MiniCssExtractPlugin({
 const copyPlugin = new CopyWebpackPlugin([
   { from: './assets', to: 'assets' }
 ]);
+
+const dotEnvPlugin = new DotenvPlugin({
+  safe: true
+});
 
 module.exports = (_, options) => ({
   entry: {
@@ -63,6 +68,7 @@ module.exports = (_, options) => ({
     ]
   },
   plugins: [
+    dotEnvPlugin,
     htmlPlugin,
     cssPlugin,
     copyPlugin
