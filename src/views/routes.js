@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 import Feed from './pages/feed';
+import UserForm from './pages/userForm';
 
 class Routes extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Routes extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/feed" component={Feed} />
+          <Route exact path="/create-user" component={UserForm} />
         </Switch>
       </React.Fragment>
     );
