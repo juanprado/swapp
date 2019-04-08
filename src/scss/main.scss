@@ -12,3 +12,16 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+.o-product-list {
+  display: flex;
+
+  li {
+    margin-right: 10px;
+    max-width: 25%;
+  }
+
+  img {
+    width: 100%;
+  }
+}
