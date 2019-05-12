@@ -1,5 +1,7 @@
+@import '../../node_modules/css-reset-and-normalize/scss/reset-and-normalize';
+
 body {
-  color: red,
+  color: red;
 }
 
 .o-home__links {
@@ -8,7 +10,6 @@ body {
 }
 
 form {  
-  border: solid 1px black;
   display: flex;
   flex-direction: column;
 }
@@ -25,3 +26,9 @@ form {
     width: 100%;
   }
 }
+
+.o-user-form__header {
+  height: 50px;
+  background: #dddddd;
+}
+

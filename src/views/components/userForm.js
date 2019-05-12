@@ -32,39 +32,42 @@ class UserForm extends React.Component {
     const { firstName, lastName, email } = this.state;
 
     return (
-      <form onSubmit={this.addUser}>
-        <fieldset>
-          <label htmlFor="firstName">First Name</label>
-          <input
-            name="firstName"
-            type="text"
-            id="firstName"
-            onChange={this.updateInput}
-            value={firstName}
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            name="lastName"
-            type="text"
-            id="lastName"
-            onChange={this.updateInput}
-            value={lastName}
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            id="email"
-            onChange={this.updateInput}
-            value={email}
-          />
-        </fieldset>
-        <button type="submit">Create New User</button>
-      </form>
+      <div>
+        <header className="o-user-form__header" />
+        <form onSubmit={this.addUser}>
+          <fieldset>
+            <label htmlFor="firstName">First Name</label>
+            <input
+              name="firstName"
+              type="text"
+              id="firstName"
+              onChange={this.updateInput}
+              value={firstName}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              name="lastName"
+              type="text"
+              id="lastName"
+              onChange={this.updateInput}
+              value={lastName}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              type="text"
+              id="email"
+              onChange={this.updateInput}
+              value={email}
+            />
+          </fieldset>
+          <button type="submit">Create New User</button>
+        </form>
+      </div>
     );
   }
 }
