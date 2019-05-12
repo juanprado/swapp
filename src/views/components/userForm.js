@@ -1,5 +1,4 @@
 import React from 'react';
-import firebase from '../../config/firebase';
 
 class UserForm extends React.Component {
   constructor() {
@@ -11,7 +10,7 @@ class UserForm extends React.Component {
     this.state = {
       firstName: '',
       lastName: '',
-      email: '',
+      email: ''
     };
   }
 
@@ -21,24 +20,12 @@ class UserForm extends React.Component {
     });
   }
 
-  async addUser(e) {
+  addUser(e) {
     const { firstName, lastName, email } = this.state;
-    const id = email.split('@')[0];
+    const { onSubmit } = this.props;
 
     e.preventDefault();
-    const db = firebase.firestore();
-
-    try {
-      const userRef = await db.collection('users').add({
-        id,
-        name: { first: firstName, last: lastName },
-        email
-      });
-
-      alert(`user ${userRef.id} created :)`);
-    } catch(error) {
-      console.log(error);
-    }
+    onSubmit({ firstName, lastName, email });
   }
 
   render() {
